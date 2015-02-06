@@ -1,0 +1,27 @@
+function add_repositories {
+  local REPOSITORIES="ppa:webupd8team/java"
+
+  for REPOSITORY in "${REPOSITORIES}"; do
+    sudo add-apt-repository -y "${REPOSITORY}"
+  done
+
+  sudo apt-get update -y
+}
+
+function install_packages { 
+  local DEV="oracle-java8-installer clang-3.4"
+  local BUILD="build-essential maven cmake"
+  local TOOLS="ssh vim git"
+  local PACKAGES="${BUILD} ${DEV} ${TOOLS} ${BUILD}"
+
+  for PACKAGE in "${PACKAGES}"; do
+    sudo apt-get install -y $PACKAGE
+  done
+}
+
+function add_jenkins_user {
+  useradd jenkins
+}
+
+add_repositories
+install_packages
