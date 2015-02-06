@@ -9,10 +9,10 @@ function add_repositories {
 }
 
 function install_packages { 
-  local DEV="oracle-java8-installer clang-3.4"
   local BUILD="build-essential maven cmake"
+  local DEV="oracle-java8-installer clang-3.4"
   local TOOLS="ssh vim git"
-  local PACKAGES="${BUILD} ${DEV} ${TOOLS} ${BUILD}"
+  local PACKAGES="${BUILD} ${DEV} ${TOOLS}"
 
   for PACKAGE in "${PACKAGES}"; do
     sudo apt-get install -y $PACKAGE
