@@ -1,0 +1,6 @@
+function git_hadoop {
+  git clone https://github.com/apache/hadoop
+  cd hadoop
+  mvn clean install -Pdist -DskipTests
+  cd ..
+}
