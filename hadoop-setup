@@ -12,9 +12,12 @@ function wget_protoc_250 {
   ./configure
   make
   sudo make install
+  sudo ldconfig
+  protoc --version
 }
 
 function hadoop_all {
+  sudo true # Prompt to sudo password entry
   wget_protoc_250
   git_hadoop
 }
