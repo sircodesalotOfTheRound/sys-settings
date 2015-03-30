@@ -4,3 +4,17 @@ function git_hadoop {
   mvn clean install -Pdist -DskipTests
   cd ..
 }
+
+function wget_protoc_250 {
+  wget http://protobuf.googlecode.com/files/protobuf-2.5.0.tar.gz 
+  tar xzvf protobuf-2.5.0.tar.gz
+  cd  protobuf-2.5.0
+  ./configure
+  make
+  sudo make install
+}
+
+function hadoop_all {
+  wget_protoc_250
+  git_hadoop
+}
