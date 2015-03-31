@@ -5,6 +5,7 @@ AS_USER=sircodesalot
 function git_hadoop {
   git clone https://github.com/apache/hadoop
   cd hadoop
+
   git checkout branch-${HADOOP_VERSION}
   mvn clean install -Pdist -DskipTests -Dmaven.javadoc.skip=true
   cd ..
@@ -26,6 +27,15 @@ function git_hive {
   git clone git@github.com:apache/hive.git
   cd hive
   mvn clean install -Phadoop-2,dist -DskipTests -Dmaven.javadoc.skip=true
+
+  # Build itests
+  cd itests
+  mvn clean install -Phadoop-2,dist -DskipTests -Dmaven.javadoc.skip=true
+  cd ..
+ 
+  # Run a working unit test (mysterry step!)
+  mvn test -Dtest=TestCliDriver -Dqfile=avro_sanity_test.q -Phadoop-2
+  
   cd ..
 }
 
