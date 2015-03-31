@@ -42,8 +42,8 @@ function set_envrionment {
 }
 
 function create_warehouse_folder {
-  sudo makedir -p /user/hive/warehouse
-  chown -R ${AS_USER} /user/hive
+  sudo mkdir -p /user/hive/warehouse
+  sudo chown ${AS_USER} -R /user/hive
 }
 
 function post_install {
