@@ -2,7 +2,7 @@ function git_hadoop {
   git clone https://github.com/apache/hadoop
   cd hadoop
   git checkout branch-2.6.0
-  mvn clean install -Pdist -DskipTests
+  mvn clean install -Pdist -DskipTests -Dmaven.javadoc.skip=true
   cd ..
 }
 
