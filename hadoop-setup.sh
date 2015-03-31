@@ -35,7 +35,7 @@ function remove_jline {
   rm hadoop/hadoop-dist/target/hadoop-${HADOOP_VERSION}/share/hadoop/yarn/lib/jline-0.9.94.jar
 }
 
-function set_envrionment {
+function set_environment {
   export PATH=$PATH:/home/sircodesalot/Dev/Cloudera/hadoop/hadoop-dist/target/hadoop-2.6.0/bin:/home/sircodesalot/Dev/Cloudera/hbase/bin
   export HADOOP_HOME=/home/sircodesalot/Dev/Cloudera/hadoop/hadoop-dist/target/hadoop-2.6.0
   export HIVE_HOME=/home/sircodesalot/Dev/Cloudera/hive/packaging/target/apache-hive-1.2.0-SNAPSHOT-bin/apache-hive-1.2.0-SNAPSHOT-bin
