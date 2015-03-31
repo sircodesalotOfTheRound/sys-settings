@@ -1,7 +1,7 @@
 function git_hadoop {
   git clone https://github.com/apache/hadoop
-  git checkout branch-2.6
   cd hadoop
+  git checkout branch-2.6.0
   mvn clean install -Pdist -DskipTests
   cd ..
 }
@@ -25,9 +25,29 @@ function git_hive {
   cd ..
 }
 
+function remove_jline {
+  # Jline causes problems with Hive CLI.
+  # http://stackoverflow.com/questions/28997441/hive-startup-error-terminal-initialization-failed-falling-back-to-unsupporte
+  rm hadoop/share/hadoop/yarn/lib/jline-0.9.94.jar
+}
+
+function set_envrionment {
+  export PATH=$PATH:/home/sircodesalot/Dev/Cloudera/hadoop/hadoop-dist/target/hadoop-2.6.0/bin:/home/sircodesalot/Dev/Cloudera/hbase/bin
+  export HADOOP_HOME=/home/sircodesalot//Dev/Cloudera/hadoop/hadoop-dist/target/hadoop-2.6.0
+  export HIVE_HOME=/home/sircodesalot/Dev/Cloudera/hive/packaging/target/apache-hive-1.2.0-SNAPSHOT-bin/apache-hive-1.2.0-SNAPSHOT-bin
+}
+
+function post_install {
+  remove_jline
+  set_environment
+}
+
 function hadoop_all {
   sudo true # Prompt for sudo password entry (needed later)
   wget_protoc_250
-  git_hive
   git_hadoop
+  git_hive
+  
+  # Post setup
+  post_install
 }
