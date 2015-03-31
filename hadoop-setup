@@ -1,5 +1,6 @@
 function git_hadoop {
   git clone https://github.com/apache/hadoop
+  git checkout branch-2.6
   cd hadoop
   mvn clean install -Pdist -DskipTests
   cd ..
@@ -14,10 +15,19 @@ function wget_protoc_250 {
   sudo make install
   sudo ldconfig
   protoc --version
+  cd ..
+}
+
+function git_hive {
+  git clone git@github.com:apache/hive.git
+  cd hive
+  mvn clean install -Phadoop-2,dist -DskipTests -Dmaven.javadoc.skip=true
+  cd ..
 }
 
 function hadoop_all {
-  sudo true # Prompt to sudo password entry
+  sudo true # Prompt for sudo password entry (needed later)
   wget_protoc_250
+  git_hive
   git_hadoop
 }
