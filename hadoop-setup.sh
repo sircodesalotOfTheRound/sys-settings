@@ -29,12 +29,15 @@ function git_hive {
   mvn clean install -Phadoop-2,dist -DskipTests -Dmaven.javadoc.skip=true
 
   # Build itests
-  cd itests
-  mvn clean install -Phadoop-2,dist -DskipTests -Dmaven.javadoc.skip=true
-  cd ..
+  #cd itests
+  #mvn clean install -Phadoop-2,dist -DskipTests -Dmaven.javadoc.skip=true
+  #cd ..
+
+  # Run datanucleus:enhance
+  cd metastore; mvn datanucleus:enhance; cd..;
  
-  # Run a working unit test (mysterry step!)
-  mvn test -Dtest=TestCliDriver -Dqfile=avro_sanity_test.q -Phadoop-2
+  # Run a working unit test (mysterry step!) Currentl commented out
+  #mvn test -Dtest=TestCliDriver -Dqfile=avro_sanity_test.q -Phadoop-2
   
   cd ..
 }
